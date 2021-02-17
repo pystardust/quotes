@@ -16,6 +16,6 @@ spell="$(printf "%s" "$data" |  pup 'div#taw > div > p > a:first-of-type text{}'
 
 quotes="$(printf "%s" "$data" |  pup 'div[data-mh="-1"] i text{}' | recode html..utf8 | sed 's/^/* /' )"
 
-[ -z "$spell" ] || printf "Did you mean %s ?\n" "$spell"
+[ -z "$spell" ] || printf "Did you mean %s?\n" "$spell"
 
-[ -z "$quotes" ] && printf "No quotes found\n" || printf "%s\n" "$quotes"
+[ -z "$quotes" ] && printf "No quotes found.\n" || printf "%s\n" "$quotes"
