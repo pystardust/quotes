@@ -1,5 +1,7 @@
 #!/bin/sh
 
+[ -z "$*" ] && { printf "Please enter name of a wise person to get their blessings\nUsage: ./quotes <name of wise person>\n" ; exit ; }
+
 google() {
 	browser='user-agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.152 Safari/537.36'
 	curl "https://www.google.com/search" \
@@ -12,8 +14,8 @@ data="$(google "$* quotes")"
 
 spell="$(printf "%s" "$data" |  pup 'div#taw > div > p > a:first-of-type text{}' | tr -d '\n' | recode html..utf8 )"
 
-qoutes="$(printf "%s" "$data" |  pup 'div[data-mh="-1"] i text{}' | recode html..utf8 | sed 's/^/* /' )"
+quotes="$(printf "%s" "$data" |  pup 'div[data-mh="-1"] i text{}' | recode html..utf8 | sed 's/^/* /' )"
 
 [ -z "$spell" ] || printf "Did you mean %s ?\n" "$spell"
 
-[ -z "$qoutes" ] && printf "No qoutes found\n" || printf "%s\n" "$qoutes"
+[ -z "$quotes" ] && printf "No quotes found\n" || printf "%s\n" "$quotes"

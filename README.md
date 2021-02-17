@@ -3,7 +3,7 @@ Get quotes from google
 
 # Usage
 ```
-./quotes <name of wise man>
+./quotes <name of wise person>
 ```
 ## Examples
 ```
